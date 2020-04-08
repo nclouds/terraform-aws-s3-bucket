@@ -8,8 +8,8 @@ locals {
 resource "aws_s3_bucket_object" "object" {
   storage_class = var.storage_class
   bucket        = var.bucket
-  source        = var.source
-  etag          = filemd5(var.source)
+  source        = var.file_source
+  etag          = filemd5(var.file_source)
   acl           = var.acl
   key           = var.key
 

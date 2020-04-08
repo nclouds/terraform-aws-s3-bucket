@@ -14,7 +14,7 @@ variable "key" {
   type        = string
 }
 
-variable "source" {
+variable "file_source" {
   description = "The path to a file that will be read and uploaded as raw bytes for the object content"
   type        = string
 }
