@@ -6,7 +6,7 @@ locals {
   tags = merge(local.default_tags, var.tags)
 }
 
-resource "aws_s3_bucket" "bucket" {
+resource "aws_s3_bucket" "bucket" { #tfsec:ignore:AWS002
   force_destroy = var.force_destroy
   bucket        = "${var.identifier}-${terraform.workspace}"
   acl           = var.acl
