@@ -1,3 +1,5 @@
-output "object" {
-  value = aws_s3_bucket_object.object
+output "output" {
+  value = {
+    object = aws_s3_bucket_object.object
+  }
 }
