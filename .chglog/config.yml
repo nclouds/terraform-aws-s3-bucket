@@ -1,0 +1,42 @@
+style: github
+template: CHANGELOG.tpl.md
+info:
+  title: CHANGELOG
+  repository_url: https://github.com/nclouds/terraform-aws-s3-bucket
+options:
+  commits:
+    sort_by: Type
+    filters:
+      Type:
+        - feat
+        - fix
+        - bug
+        - docs
+        - style
+
+  commit_groups:
+    group_by: Type
+    sort_by: Type
+    title_maps:
+      feat: FEATURES
+      fix: BUG FIXES
+      bug: BUG FIXES
+      docs: DOCS
+      style: FORMATTING
+
+  header:
+    pattern: "^(.+)\\s*:\\s*(.+)$"
+    pattern_maps:
+      - Type
+      - Subject
+
+  notes:
+    keywords:
+      - BREAKING CHANGES
+      - NOTES
+
+  refs:
+    actions:
+      - Closes
+      - Fixes
+      - Resolves
