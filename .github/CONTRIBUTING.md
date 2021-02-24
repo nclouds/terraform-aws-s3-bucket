@@ -2,11 +2,16 @@
 
 When contributing to this repository, please first create a new issue.
 
+There are a few tools that if you have them [installed](INSTALL.md) on your machine will help with the complete [workflow](WORKFLOW.md) we follow.
+
 ## Pull Request Process
 
 1. Add [semantic prefix](#semantic-pull-requests) to your PR or Commits (at least one of your commit groups)
-2. Update the README.md with any changes to new variables, ports or other needed information to use the new feature.
-3. Do not update the CHANGELOG file. The maintainers of the project will take care of this when they release a new version of the module.
+2. Update the README.md with any changes to new variables, ports or other needed information to use the new feature. `terraform_docs` hook will help with updating the module variables automatically.
+3. Do not update the CHANGELOG file. The maintainers of the project will take care of this when they [release](RELEASE.md) a new version of the module.
+4. Add a reviewer to your PR and wait for feedback and one approval before being able to merge your change.
+5. Make sure the Github Actions are completed successfully.
+6. Once your changes are approved and all checks are successful you should be able to merge in your changes (squashing is recommended). Merged PRs will be included in the next release.
 
 ## Semantic Pull Requests
 
