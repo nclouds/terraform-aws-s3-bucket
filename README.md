@@ -1,6 +1,49 @@
-# terraform-aws-s3-bucket
+# Simple Storage Service (S3) Terraform Module
 
-Terraform module that creates an S3 bucket.
+Terraform module to provision [`Simple Storage Service Service`](https://aws.amazon.com/s3) on AWS.
+
+## Usage
+
+### Simple setup
+
+Create a simple S3 bucket with default configurations.
+```hcl
+    module "s3" {
+        source     = "git@github.com:nclouds/terraform-aws-s3-bucket.git?ref=v0.1.0"
+        identifier = var.identifier
+        tags       = var.tags
+    }
+```
+
+For more details on a working example, please visit [`examples/simple`](examples/simple)
+
+### Advanced Setup
+If you want to create S3 bucket with enhanced configuration e.g ACLs , force_destory etc. and also objects inside, you can use the module like this:
+
+```hcl
+    module "s3" {
+        source        = "git@github.com:nclouds/terraform-aws-s3-bucket.git?ref=v0.1.0"
+        identifier    = var.identifier
+        tags          = var.tags
+        force_destroy = "true"
+        acl           = "public-read"
+    }
+
+    module "file" {
+        source      = "git@github.com:nclouds/terraform-aws-s3-bucket.git//modules/s3-object?ref=v0.1.0"
+        file_source = "utils/file.txt"
+        bucket      = module.s3.output.bucket.id
+        tags        = var.tags
+        key         = "file.txt"
+    }
+```
+
+For more options refer to a working example at [`examples/advanced`](examples/advanced)
+
+## Examples
+Here are some working examples of using this module:
+- [`examples/simple`](examples/simple)
+- [`examples/advanced`](examples/advanced)
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Requirements
@@ -14,6 +57,16 @@ Terraform module that creates an S3 bucket.
 | Name | Version |
 |------|---------|
 | aws | n/a |
+
+## Modules
+
+No Modules.
+
+## Resources
+
+| Name |
+|------|
+| [aws_s3_bucket](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket) |
 
 ## Inputs
 
@@ -29,7 +82,6 @@ Terraform module that creates an S3 bucket.
 | Name | Description |
 |------|-------------|
 | output | n/a |
-
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 
 ## Contributing
