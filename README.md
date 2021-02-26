@@ -9,7 +9,7 @@ Terraform module to provision [`Simple Storage Service Service`](https://aws.ama
 Create a simple S3 bucket with default configurations.
 ```hcl
     module "s3" {
-        source     = "git@github.com:nclouds/terraform-aws-s3-bucket.git?ref=v0.1.0"
+        source     = "git@github.com:nclouds/terraform-aws-s3-bucket.git?ref=v0.1.1"
         identifier = var.identifier
         tags       = var.tags
     }
@@ -22,7 +22,7 @@ If you want to create S3 bucket with enhanced configuration e.g ACLs , force_des
 
 ```hcl
     module "s3" {
-        source        = "git@github.com:nclouds/terraform-aws-s3-bucket.git?ref=v0.1.0"
+        source        = "git@github.com:nclouds/terraform-aws-s3-bucket.git?ref=v0.1.1"
         identifier    = var.identifier
         tags          = var.tags
         force_destroy = "true"
@@ -30,7 +30,7 @@ If you want to create S3 bucket with enhanced configuration e.g ACLs , force_des
     }
 
     module "file" {
-        source      = "git@github.com:nclouds/terraform-aws-s3-bucket.git//modules/s3-object?ref=v0.1.0"
+        source      = "git@github.com:nclouds/terraform-aws-s3-bucket.git//modules/s3-object?ref=v0.1.1"
         file_source = "utils/file.txt"
         bucket      = module.s3.output.bucket.id
         tags        = var.tags
