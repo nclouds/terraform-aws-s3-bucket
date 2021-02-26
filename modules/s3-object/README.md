@@ -15,6 +15,16 @@ Terraform module that creates an S3 object.
 |------|---------|
 | aws | n/a |
 
+## Modules
+
+No Modules.
+
+## Resources
+
+| Name |
+|------|
+| [aws_s3_bucket_object](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket_object) |
+
 ## Inputs
 
 | Name | Description | Type | Default | Required |
@@ -31,7 +41,6 @@ Terraform module that creates an S3 object.
 | Name | Description |
 |------|-------------|
 | output | n/a |
-
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 
 ## Contributing
