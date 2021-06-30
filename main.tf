@@ -1,14 +1,15 @@
 locals {
+  identifier = var.append_workspace ? "${var.identifier}-${terraform.workspace}" : var.identifier
   default_tags = {
     Environment = terraform.workspace
-    Name        = "${var.identifier}-${terraform.workspace}"
+    Name        = local.identifier
   }
   tags = merge(local.default_tags, var.tags)
 }
 
 resource "aws_s3_bucket" "bucket" { #tfsec:ignore:AWS002
   force_destroy = var.force_destroy
-  bucket        = "${var.identifier}-${terraform.workspace}"
+  bucket        = local.identifier
   acl           = var.acl
 
   #TODO support the other types of encryption
