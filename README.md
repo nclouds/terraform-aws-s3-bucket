@@ -9,9 +9,14 @@ Terraform module to provision [`Simple Storage Service Service`](https://aws.ama
 Create a simple S3 bucket with default configurations.
 ```hcl
     module "s3" {
-        source     = "git@github.com:nclouds/terraform-aws-s3-bucket.git?ref=v0.1.1"
-        identifier = var.identifier
-        tags       = var.tags
+        source      = "app.terraform.io/ncodelibrary/s3-bucket/aws"
+        version     = "0.1.2"
+        identifier  = "example"
+        tags        = {
+            Owner       = "sysops"
+            env         = "dev"
+            Cost_Center = "XYZ"
+        }
     }
 ```
 
@@ -22,18 +27,28 @@ If you want to create S3 bucket with enhanced configuration e.g ACLs , force_des
 
 ```hcl
     module "s3" {
-        source        = "git@github.com:nclouds/terraform-aws-s3-bucket.git?ref=v0.1.1"
-        identifier    = var.identifier
-        tags          = var.tags
+        source      = "app.terraform.io/ncodelibrary/s3-bucket/aws"
+        version     = "0.1.2"
+        identifier  = "example"
+        tags        = {
+            Owner       = "sysops"
+            env         = "dev"
+            Cost_Center = "XYZ"
+        }
         force_destroy = "true"
         acl           = "public-read"
     }
 
     module "file" {
-        source      = "git@github.com:nclouds/terraform-aws-s3-bucket.git//modules/s3-object?ref=v0.1.1"
+        source      = "app.terraform.io/ncodelibrary/s3-bucket/aws//modules/s3-object?ref=v0.1.1"
+        version     = "0.1.2"
         file_source = "utils/file.txt"
         bucket      = module.s3.output.bucket.id
-        tags        = var.tags
+        tags        = {
+            Owner       = "sysops"
+            env         = "dev"
+            Cost_Center = "XYZ"
+        }
         key         = "file.txt"
     }
 ```
@@ -73,6 +88,7 @@ No Modules.
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | acl | The canned ACL to apply | `string` | `"private"` | no |
+| append\_workspace | Appends the terraform workspace at the end of resource names, <identifier>-<worspace> | `bool` | `true` | no |
 | force\_destroy | A boolean that indicates all objects should be deleted from the bucket so that the bucket can be destroyed without error | `bool` | `false` | no |
 | identifier | The name of the security group | `string` | n/a | yes |
 | tags | Tags to be applied to the resource | `map` | `{}` | no |

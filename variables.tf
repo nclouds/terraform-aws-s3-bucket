@@ -20,3 +20,9 @@ variable "tags" {
   default     = {}
   type        = map
 }
+
+variable "append_workspace" {
+  description = "Appends the terraform workspace at the end of resource names, <identifier>-<worspace>"
+  default     = true
+  type        = bool
+}
