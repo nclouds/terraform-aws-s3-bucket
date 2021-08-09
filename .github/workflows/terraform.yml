@@ -23,6 +23,6 @@ jobs:
           terraform validate -no-color
 
       - name: "tfsec - Security Scan"
-        uses: triat/terraform-security-scan@v2.2.3
+        uses: triat/terraform-security-scan@v3.0.0
         with:
           tfsec_actions_comment: false
