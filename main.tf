@@ -7,7 +7,8 @@ locals {
   tags = merge(local.default_tags, var.tags)
 }
 
-resource "aws_s3_bucket" "bucket" { #tfsec:ignore:AWS002 #tfsec:ignore:AWS077
+#tfsec:ignore:AWS002 #tfsec:ignore:AWS077 #tfsec:ignore:AWS098
+resource "aws_s3_bucket" "bucket" {
   force_destroy = var.force_destroy
   bucket        = local.identifier
   acl           = var.acl
