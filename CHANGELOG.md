@@ -8,6 +8,15 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 
 
+<a name="v0.1.2"></a>
+## [v0.1.2] - 2021-08-10
+DOCS:
+- Add Source Links to Examples
+
+FEATURES:
+- customize resource names and update docs
+
+
 <a name="v0.1.1"></a>
 ## [v0.1.1] - 2021-02-26
 DOCS:
@@ -20,5 +29,6 @@ DOCS:
 - adding base documentation
 
 
-[Unreleased]: https://github.com/nclouds/terraform-aws-s3-bucket/compare/v0.1.1...HEAD
+[Unreleased]: https://github.com/nclouds/terraform-aws-s3-bucket/compare/v0.1.2...HEAD
+[v0.1.2]: https://github.com/nclouds/terraform-aws-s3-bucket/compare/v0.1.1...v0.1.2
 [v0.1.1]: https://github.com/nclouds/terraform-aws-s3-bucket/compare/v0.1.0...v0.1.1
