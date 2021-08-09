@@ -1,3 +1,6 @@
+[SourceCode](https://github.com/nclouds/terraform-aws-s3-bucket/tree/v0.1.1/examples/simple)   
+[Report an Issue](https://github.com/nclouds/terraform-aws-s3-bucket/issues)
+
 # Simple S3 Bucket example
 
 Configuration in this directory creates the following Resources:
