@@ -10,17 +10,28 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: hashicorp/setup-terraform@v1
+        with:
+          cli_config_credentials_token: ${{ secrets.NCODE_API_TOKEN }}
+      
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.NCODE_AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.NCODE_AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-1
+          role-to-assume: ${{ secrets.NCODE_AWS_ROLE_TO_ASSUME }}
+          role-external-id: ${{ secrets.NCODE_AWS_ROLE_EXTERNAL_ID }}
+          role-duration-seconds: 900
+          role-session-name: NCODE_SESSION
 
-      - name: 'Terraform Format'
-        run: terraform fmt -check -diff
-        continue-on-error: true
-
-      - name: 'Terraform Validate'
-        env:
-          AWS_REGION: 'us-east-1'
+      - name: 'Terraform Fmt'
         run: |
-          terraform init
-          terraform validate -no-color
+          terraform fmt --recursive -check -diff
+
+      - name: 'Run Examples'
+        env:
+          AWS_REGION: us-east-1
+        run: ./run-examples.sh
 
       - name: "tfsec - Security Scan"
         uses: triat/terraform-security-scan@v3.0.0

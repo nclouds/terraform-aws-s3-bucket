@@ -11,5 +11,5 @@ variable "tags" {
     env         = "dev"
     Cost_Center = "XYZ"
   }
-  type = map
+  type = map(any)
 }

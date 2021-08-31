@@ -91,7 +91,7 @@ No Modules.
 | append\_workspace | Appends the terraform workspace at the end of resource names, <identifier>-<worspace> | `bool` | `true` | no |
 | force\_destroy | A boolean that indicates all objects should be deleted from the bucket so that the bucket can be destroyed without error | `bool` | `false` | no |
 | identifier | The name of the security group | `string` | n/a | yes |
-| tags | Tags to be applied to the resource | `map` | `{}` | no |
+| tags | Tags to be applied to the resource | `map(any)` | `{}` | no |
 
 ## Outputs
 
