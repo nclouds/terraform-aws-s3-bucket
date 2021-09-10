@@ -34,7 +34,7 @@ No Modules.
 | file\_source | The path to a file that will be read and uploaded as raw bytes for the object content | `string` | n/a | yes |
 | key | The name of the object once it is in the bucket | `string` | n/a | yes |
 | storage\_class | Specifies the desired Storage Class for the object | `string` | `"STANDARD"` | no |
-| tags | Tags to be applied to the resource | `map` | `{}` | no |
+| tags | Tags to be applied to the resource | `map(any)` | `{}` | no |
 
 ## Outputs
 
