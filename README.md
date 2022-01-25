@@ -1,4 +1,9 @@
-# Simple Storage Service (S3) Terraform Module
+<p align="left"><img width="256" height="100" src="https://www.nclouds.com/img/nclouds-logo.svg"></p>  
+
+![Terraform](https://github.com/nclouds/terraform-aws-s3-bucket/workflows/Terraform/badge.svg)
+# nCode Library
+
+## Simple Storage Service (S3) Terraform Module
 
 Terraform module to provision [`Simple Storage Service Service`](https://aws.amazon.com/s3) on AWS.
 
