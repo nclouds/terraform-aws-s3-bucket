@@ -1,4 +1,4 @@
-<p align="left"><img width="256" height="100" src="https://www.nclouds.com/img/nclouds-logo.svg"></p>  
+<p align="left"><img width=400 height="100" src="https://www.nclouds.com/img/nclouds-logo.svg"></p>  
 
 ![Terraform](https://github.com/nclouds/terraform-aws-s3-bucket/workflows/Terraform/badge.svg)
 # nCode Library
