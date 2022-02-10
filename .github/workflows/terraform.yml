@@ -34,6 +34,6 @@ jobs:
         run: ./run-examples.sh
 
       - name: "tfsec - Security Scan"
-        uses: triat/terraform-security-scan@v3.0.0
+        uses: aquasecurity/tfsec-pr-commenter-action@v1.0.2
         with:
-          tfsec_actions_comment: false
+          github_token: ${{ secrets.GITHUB_TOKEN }}
