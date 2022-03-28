@@ -7,20 +7,32 @@ locals {
   tags = merge(local.default_tags, var.tags)
 }
 
-#tfsec:ignore:AWS002 #tfsec:ignore:AWS077 #tfsec:ignore:AWS098
+#tfsec:ignore:aws-s3-block-public-acls
+#tfsec:ignore:aws-s3-block-public-policy
+#tfsec:ignore:aws-s3-ignore-public-acls
+#tfsec:ignore:aws-s3-no-public-buckets
+#tfsec:ignore:aws-s3-enable-bucket-logging
+#tfsec:ignore:aws-s3-enable-versioning
+#tfsec:ignore:aws-s3-specify-public-access-block
 resource "aws_s3_bucket" "bucket" {
   force_destroy = var.force_destroy
   bucket        = local.identifier
-  acl           = var.acl
+  tags          = local.tags
+}
+
+resource "aws_s3_bucket_acl" "bucket_acl" {
+  bucket = aws_s3_bucket.bucket.id
+  acl    = var.acl
+}
+
+#tfsec:ignore:aws-s3-encryption-customer-key
+resource "aws_s3_bucket_server_side_encryption_configuration" "sse" {
+  bucket = aws_s3_bucket.bucket.id
 
   #TODO support the other types of encryption
-  server_side_encryption_configuration {
-    rule {
-      apply_server_side_encryption_by_default {
-        sse_algorithm = "AES256"
-      }
+  rule {
+    apply_server_side_encryption_by_default {
+      sse_algorithm = "AES256"
     }
   }
-
-  tags = local.tags
 }
