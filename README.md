@@ -15,7 +15,7 @@ Create a simple S3 bucket with default configurations.
 ```hcl
     module "s3" {
         source      = "app.terraform.io/ncodelibrary/s3-bucket/aws"
-        version     = "0.1.2"
+        version     = "0.2.0"
         identifier  = "example"
         tags        = {
             Owner       = "sysops"
@@ -33,7 +33,7 @@ If you want to create S3 bucket with enhanced configuration e.g ACLs , force_des
 ```hcl
     module "s3" {
         source      = "app.terraform.io/ncodelibrary/s3-bucket/aws"
-        version     = "0.1.2"
+        version     = "0.2.0"
         identifier  = "example"
         tags        = {
             Owner       = "sysops"
@@ -45,8 +45,8 @@ If you want to create S3 bucket with enhanced configuration e.g ACLs , force_des
     }
 
     module "file" {
-        source      = "app.terraform.io/ncodelibrary/s3-bucket/aws//modules/s3-object?ref=v0.1.1"
-        version     = "0.1.2"
+        source      = "app.terraform.io/ncodelibrary/s3-bucket/aws//modules/s3-object"
+        version     = "0.2.0"
         file_source = "utils/file.txt"
         bucket      = module.s3.output.bucket.id
         tags        = {
