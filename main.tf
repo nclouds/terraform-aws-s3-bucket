@@ -20,7 +20,6 @@ resource "aws_s3_bucket_acl" "bucket_acl" {
   acl    = var.acl
 }
 
-#tfsec:ignore:aws-s3-encryption-customer-key
 resource "aws_s3_bucket_server_side_encryption_configuration" "sse" {
   bucket = aws_s3_bucket.bucket.id
 
@@ -76,7 +75,6 @@ resource "aws_s3_bucket_acl" "log_bucket_acl" {
   acl    = var.acl
 }
 
-#tfsec:ignore:aws-s3-encryption-customer-key
 resource "aws_s3_bucket_server_side_encryption_configuration" "log_sse" {
   count  = var.enable_logs ? 1 : 0
   bucket = aws_s3_bucket.log_bucket[count.index].id
