@@ -7,7 +7,7 @@ variable "identifier" {
 variable "tags" {
   description = "Tags for the resource"
   default = {
-    Terraform   = true 
+    Terraform   = true
     Environment = "dev"
     Name        = "Example"
     Owner       = "sysops"
