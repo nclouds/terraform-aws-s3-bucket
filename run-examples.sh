@@ -12,7 +12,8 @@ terraform_plan () {
     pwd
     terraform init 
     terraform validate -no-color
-    terraform plan
+    terraform plan -out plan.out 
+    terraform show -json plan.out 2>&1 | tee $BASEDIR/tfplan.json
     popd
 }
 
