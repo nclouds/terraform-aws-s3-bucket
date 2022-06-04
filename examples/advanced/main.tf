@@ -2,6 +2,7 @@ resource "aws_kms_key" "key" {
   deletion_window_in_days = 7
   enable_key_rotation     = true
   description             = "This key is used to encrypt bucket objects"
+  tags                    = var.tags
 }
 
 module "s3" {
