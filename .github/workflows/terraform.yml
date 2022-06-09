@@ -14,6 +14,17 @@ jobs:
           cli_config_credentials_token: ${{ secrets.NCODE_API_TOKEN }}
           terraform_version: 1.1.2
           terraform_wrapper: false
+
+      - name: Add SSH key
+        env:
+            SSH_AUTH_SOCK: /tmp/ssh_agent.sock
+        run: |
+            mkdir -p /home/runner/.ssh
+            ssh-keyscan github.com >> /home/runner/.ssh/known_hosts
+            echo "${{ secrets.NCODE_SSH_KEY }}" > /home/runner/.ssh/github_actions
+            chmod 600 /home/runner/.ssh/github_actions
+            ssh-agent -a $SSH_AUTH_SOCK > /dev/null   
+            ssh-add /home/runner/.ssh/github_actions
       
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1
@@ -33,6 +44,7 @@ jobs:
       - name: 'Run Examples'
         env:
           AWS_REGION: us-east-1
+          SSH_AUTH_SOCK: /tmp/ssh_agent.sock
         run: ./run-examples.sh
 
       - name: 'Pull Policies Repository'
