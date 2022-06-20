@@ -12,6 +12,19 @@ jobs:
       - uses: hashicorp/setup-terraform@v1
         with:
           cli_config_credentials_token: ${{ secrets.NCODE_API_TOKEN }}
+          terraform_version: 1.1.2
+          terraform_wrapper: false
+
+      - name: Add SSH key
+        env:
+            SSH_AUTH_SOCK: /tmp/ssh_agent.sock
+        run: |
+            mkdir -p /home/runner/.ssh
+            ssh-keyscan github.com >> /home/runner/.ssh/known_hosts
+            echo "${{ secrets.NCODE_SSH_KEY }}" > /home/runner/.ssh/github_actions
+            chmod 600 /home/runner/.ssh/github_actions
+            ssh-agent -a $SSH_AUTH_SOCK > /dev/null   
+            ssh-add /home/runner/.ssh/github_actions
       
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1
@@ -31,7 +44,22 @@ jobs:
       - name: 'Run Examples'
         env:
           AWS_REGION: us-east-1
+          SSH_AUTH_SOCK: /tmp/ssh_agent.sock
         run: ./run-examples.sh
+
+      - name: 'Pull Policies Repository'
+        uses: actions/checkout@v3
+        with:
+          repository: nclouds/terraform-opa-policies
+          ref: master
+          path: policies
+          token: ${{ secrets.NCODE_GITHUB_TOKEN }}
+
+      - name: 'Run OPA Policies'
+        uses: nclouds/opa-policies-action@v0.3.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
 
       - name: "tfsec - Security Scan"
         uses: aquasecurity/tfsec-pr-commenter-action@v1.0.2

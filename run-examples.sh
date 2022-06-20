@@ -12,25 +12,22 @@ terraform_plan () {
     pwd
     terraform init 
     terraform validate -no-color
-    terraform plan
+    terraform plan -out plan.out 
+    terraform show -json plan.out 2>&1 | tee $BASEDIR/tfplan.json
     popd
 }
 
 run_examples () {
-    if [ -d examples ]
+    if [[ -d examples ]]
         then 
         EXAMPLES=$(find ./examples -mindepth 1 -maxdepth 1 -type d -exec echo {} \;)
-        if [ -z $EXAMPLES ]
+        if [[ -z $EXAMPLES ]]
             then 
             terraform_plan ./examples
         else
             for EXAMPLE in $EXAMPLES
             do 
-                echo "Skipping anything which doesn't have a tf file "
-                TF_EXIST=$(find $EXAMPLE  -type f -name "*.tf" | wc -l)
-                if [ $TF_EXIST -gt 0 ]; then
-                    terraform_plan $EXAMPLE
-                fi
+            terraform_plan $EXAMPLE
             done
         fi
     else 
