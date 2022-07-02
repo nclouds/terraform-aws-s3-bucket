@@ -8,8 +8,15 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 
 
+<a name="v0.2.1"></a>
+## [v0.2.1] - 2022-06-21
+FEATURES:
+- Enable nClouds PreCommit Hook ([#15](https://github.com/nclouds/terraform-aws-s3-bucket/issues/15))
+- Enable Security Features ([#14](https://github.com/nclouds/terraform-aws-s3-bucket/issues/14))
+
+
 <a name="v0.2.0"></a>
-## [v0.2.0] - 2022-03-29
+## [v0.2.0] - 2022-04-02
 BUG FIXES:
 - Update TFSec Trait in GHA workflow ([#10](https://github.com/nclouds/terraform-aws-s3-bucket/issues/10))
 
@@ -18,7 +25,6 @@ DOCS:
 
 FEATURES:
 - Run Examples in Actions
-- Make module compatible with AWS Provider 4.x
 
 
 <a name="v0.1.2"></a>
@@ -42,7 +48,8 @@ DOCS:
 - adding base documentation
 
 
-[Unreleased]: https://github.com/nclouds/terraform-aws-s3-bucket/compare/v0.2.0...HEAD
+[Unreleased]: https://github.com/nclouds/terraform-aws-s3-bucket/compare/v0.2.1...HEAD
+[v0.2.1]: https://github.com/nclouds/terraform-aws-s3-bucket/compare/v0.2.0...v0.2.1
 [v0.2.0]: https://github.com/nclouds/terraform-aws-s3-bucket/compare/v0.1.2...v0.2.0
 [v0.1.2]: https://github.com/nclouds/terraform-aws-s3-bucket/compare/v0.1.1...v0.1.2
 [v0.1.1]: https://github.com/nclouds/terraform-aws-s3-bucket/compare/v0.1.0...v0.1.1

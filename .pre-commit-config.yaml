@@ -8,7 +8,7 @@ repos:
     - id: terraform_tfsec
 
 - repo: https://github.com/nclouds/pre-commit-hooks
-  rev: v1.0.1
+  rev: v1.0.2
   hooks:
     - id: validate-commit-message
     - id: validate-branch-name
