@@ -56,7 +56,7 @@ jobs:
           token: ${{ secrets.NCODE_GITHUB_TOKEN }}
 
       - name: 'Run OPA Policies'
-        uses: nclouds/opa-policies-action@v0.3.1
+        uses: nclouds/opa-policies-action@master
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
