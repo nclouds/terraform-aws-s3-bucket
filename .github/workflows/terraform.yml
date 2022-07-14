@@ -56,7 +56,7 @@ jobs:
           token: ${{ secrets.NCODE_GITHUB_TOKEN }}
 
       - name: 'Run OPA Policies'
-        uses: nclouds/opa-policies-action@v0.3.0
+        uses: nclouds/opa-policies-action@master
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -65,3 +65,37 @@ jobs:
         uses: aquasecurity/tfsec-pr-commenter-action@v1.0.2
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
+
+
+      - name: Fetch Metadata for Slack Notify
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          PR_NUMBER=$(echo "$GITHUB_REF" | awk -F "/" '{print $(NF-1)}') 
+          PR_URL=$GITHUB_SERVER_URL/$GITHUB_REPOSITORY/pull/$PR_NUMBER
+          echo "PR_URL=$PR_URL" >> $GITHUB_ENV
+          echo "GITHUB_REPOSITORY=$GITHUB_REPOSITORY" >> $GITHUB_ENV
+          REVIEWERS=($(curl -H "Accept: application/vnd.github.v3+json" -H "Authorization: token $GITHUB_TOKEN" https://api.github.com/repos/$GITHUB_REPOSITORY/pulls/$PR_NUMBER | jq -r '.requested_reviewers[].login'))
+          if [ $? -eq 0 ]; then
+            REVIEWERS=( "${REVIEWERS[@]/#/@}" )
+          else 
+            REVIEWERS=(@anupclouddevops @carlosrodf)
+          fi
+          echo "REVIEWERS=${REVIEWERS[@]}" >> $GITHUB_ENV
+        if: ${{ always() && github.event_name == 'pull_request' }}
+
+      - name: Notify Slack
+        uses: rtCamp/action-slack-notify@v2
+        if: ${{ always() && github.event_name == 'pull_request' }}
+        env:
+          SLACK_CHANNEL: ncode-owners
+          SLACK_USERNAME: nCodeLibrary
+          SLACK_MSG_AUTHOR: ${{ env.GITHUB_ACTOR }}
+          SLACK_COLOR: ${{ job.status }}
+          SLACK_TITLE: "Attention: ${{ env.REVIEWERS }}"
+          SLACK_MESSAGE: ${{ env.PR_URL }}
+          SLACK_ICON: https://ncodelibrary.com/themes/daux/img/logo.svg
+          SLACK_WEBHOOK: https://hooks.slack.com/services/${{ secrets.NCODE_SLACK_TOKEN }}
+          SLACK_FOOTER: "<https://ncodelibrary.com|ncodelibrary>"
+          MSG_MINIMAL: actions url,event,commit
+
