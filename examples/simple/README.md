@@ -1,4 +1,4 @@
-[SourceCode](https://github.com/nclouds/terraform-aws-s3-bucket/tree/v0.2.1/examples/simple)   
+[SourceCode](https://github.com/nclouds/terraform-aws-s3-bucket/tree/v0.2.2/examples/simple)   
 [Report an Issue](https://github.com/nclouds/terraform-aws-s3-bucket/issues)
 
 # Simple S3 Bucket example

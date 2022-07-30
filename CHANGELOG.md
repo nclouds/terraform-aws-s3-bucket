@@ -8,8 +8,14 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 
 
+<a name="v0.2.2"></a>
+## [v0.2.2] - 2022-07-15
+FEATURES:
+- Enable Slack Notifications
+
+
 <a name="v0.2.1"></a>
-## [v0.2.1] - 2022-06-21
+## [v0.2.1] - 2022-07-02
 FEATURES:
 - Enable nClouds PreCommit Hook ([#15](https://github.com/nclouds/terraform-aws-s3-bucket/issues/15))
 - Enable Security Features ([#14](https://github.com/nclouds/terraform-aws-s3-bucket/issues/14))
@@ -48,7 +54,8 @@ DOCS:
 - adding base documentation
 
 
-[Unreleased]: https://github.com/nclouds/terraform-aws-s3-bucket/compare/v0.2.1...HEAD
+[Unreleased]: https://github.com/nclouds/terraform-aws-s3-bucket/compare/v0.2.2...HEAD
+[v0.2.2]: https://github.com/nclouds/terraform-aws-s3-bucket/compare/v0.2.1...v0.2.2
 [v0.2.1]: https://github.com/nclouds/terraform-aws-s3-bucket/compare/v0.2.0...v0.2.1
 [v0.2.0]: https://github.com/nclouds/terraform-aws-s3-bucket/compare/v0.1.2...v0.2.0
 [v0.1.2]: https://github.com/nclouds/terraform-aws-s3-bucket/compare/v0.1.1...v0.1.2
