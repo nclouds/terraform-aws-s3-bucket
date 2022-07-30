@@ -8,10 +8,15 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 
 
-<a name="v0.2.2"></a>
-## [v0.2.2] - 2022-07-15
+<a name="v0.2.3"></a>
+## [v0.2.3] - 2022-07-30
 FEATURES:
-- Enable Slack Notifications
+- Make Module OPA Compliant
+
+
+<a name="v0.2.2"></a>
+## [v0.2.2] - 2022-07-30
+
 
 
 <a name="v0.2.1"></a>
@@ -54,7 +59,8 @@ DOCS:
 - adding base documentation
 
 
-[Unreleased]: https://github.com/nclouds/terraform-aws-s3-bucket/compare/v0.2.2...HEAD
+[Unreleased]: https://github.com/nclouds/terraform-aws-s3-bucket/compare/v0.2.3...HEAD
+[v0.2.3]: https://github.com/nclouds/terraform-aws-s3-bucket/compare/v0.2.2...v0.2.3
 [v0.2.2]: https://github.com/nclouds/terraform-aws-s3-bucket/compare/v0.2.1...v0.2.2
 [v0.2.1]: https://github.com/nclouds/terraform-aws-s3-bucket/compare/v0.2.0...v0.2.1
 [v0.2.0]: https://github.com/nclouds/terraform-aws-s3-bucket/compare/v0.1.2...v0.2.0
