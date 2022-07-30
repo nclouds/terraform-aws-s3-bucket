@@ -2,13 +2,11 @@ resource "aws_kms_key" "key" {
   deletion_window_in_days = 7
   enable_key_rotation     = true
   description             = "This key is used to encrypt bucket objects"
-  tags                    = var.tags
 }
 
 module "s3" {
   source                       = "../.."
   identifier                   = var.identifier
-  tags                         = var.tags
   force_destroy                = "true"
   versioning_state             = "Enabled"
   log_bucket_versioning_state  = "Enabled"
@@ -23,6 +21,5 @@ module "file" {
   source      = "../../modules/s3-object"
   file_source = "utils/file.txt"
   bucket      = module.s3.output.bucket.id
-  tags        = var.tags
   key         = "file.txt"
 }
