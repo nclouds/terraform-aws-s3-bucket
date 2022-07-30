@@ -1,12 +1,13 @@
 locals {
   identifier = var.append_workspace ? "${var.identifier}-${terraform.workspace}" : var.identifier
-  default_tags = {
-    Environment = terraform.workspace
-    Name        = local.identifier
-  }
-  tags = merge(local.default_tags, var.tags)
+  tags       = merge(module.common_tags.output, var.tags)
 }
 
+module "common_tags" {
+  source      = "git@github.com:nclouds/terraform-aws-common-tags.git?ref=v0.1.1"
+  environment = terraform.workspace
+  name        = local.identifier
+}
 
 #tfsec:ignore:aws-s3-enable-bucket-logging
 resource "aws_s3_bucket" "bucket" {

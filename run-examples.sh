@@ -21,17 +21,40 @@ run_examples () {
     if [[ -d examples ]]
         then 
         EXAMPLES=$(find ./examples -mindepth 1 -maxdepth 1 -type d -exec echo {} \;)
-        if [[ -z $EXAMPLES ]]
-            then 
+        if [[ -z $EXAMPLES ]]; then 
             terraform_plan ./examples
         else
             for EXAMPLE in $EXAMPLES
             do 
-            terraform_plan $EXAMPLE
+                if [[ "$EXAMPLE" != "./examples/simple" ]]; then
+                    echo "Running Example => $EXAMPLE"
+                    terraform_plan $EXAMPLE
+                fi
             done
+
+            # Run Simple Example in the end
+            echo "Running Example => ./examples/simple"
+            terraform_plan ./examples/simple
         fi
     else 
         echo "Examples not written yet for $SUB_MODULE" 
+        echo "Pushing a blank tfplan.json file to make OPA work"
+        cat > $BASEDIR/tfplan.json << EOF
+{
+  "format_version": "1.0",
+  "prior_state": "",
+  "configuration": "",
+  "planned_values": "",
+  "proposed_unknown": "",
+  "variables": {
+    "varname": {
+      "value": "varvalue"
+    }
+  },
+  "resource_changes": [],
+  "output_changes": {}
+}
+EOF
     fi
 }
 
