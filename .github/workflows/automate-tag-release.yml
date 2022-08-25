@@ -1,0 +1,41 @@
+name: "automatic-tag-release"
+
+on:
+  workflow_dispatch:
+    inputs:
+      release_type:
+        type: choice
+        description: 'Release type'
+        required: true
+        options: 
+          - patch
+          - minor
+          - major
+        default: 'patch'
+
+env:
+  GH_TOKEN: ${{ secrets.NCODE_GITHUB_TOKEN }}
+
+jobs:
+  tagged-release:
+    name: "ReleaseTag"
+    runs-on: "ubuntu-latest"
+
+    steps:
+      # ...
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          token: ${{ env.GH_TOKEN }}
+
+      - name: Setup git-chglog environment
+        uses: Bpazy/setup-git-chglog@v1
+        with:
+          git-chglog-version: '0.15.1'
+
+      - name: Generate Changelog
+        env:
+          RELEASE_TYPE: ${{ inputs.release_type }}
+        run: |
+          make changelog
+          make release
