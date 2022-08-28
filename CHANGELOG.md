@@ -8,9 +8,17 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 
 
+<a name="v0.2.4"></a>
+## [v0.2.4] - 2022-08-28
+FEATURES:
+- Automate Release Notes ([#23](https://github.com/nclouds/terraform-aws-s3-bucket/issues/23))
+
+
 <a name="v0.2.3"></a>
 ## [v0.2.3] - 2022-07-30
 FEATURES:
+- Make Module OPA Compliant
+- Make Module OPA Compliant
 - Make Module OPA Compliant
 
 
@@ -59,7 +67,8 @@ DOCS:
 - adding base documentation
 
 
-[Unreleased]: https://github.com/nclouds/terraform-aws-s3-bucket/compare/v0.2.3...HEAD
+[Unreleased]: https://github.com/nclouds/terraform-aws-s3-bucket/compare/v0.2.4...HEAD
+[v0.2.4]: https://github.com/nclouds/terraform-aws-s3-bucket/compare/v0.2.3...v0.2.4
 [v0.2.3]: https://github.com/nclouds/terraform-aws-s3-bucket/compare/v0.2.2...v0.2.3
 [v0.2.2]: https://github.com/nclouds/terraform-aws-s3-bucket/compare/v0.2.1...v0.2.2
 [v0.2.1]: https://github.com/nclouds/terraform-aws-s3-bucket/compare/v0.2.0...v0.2.1
