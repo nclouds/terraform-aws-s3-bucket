@@ -19,12 +19,6 @@ changelog:
 	echo "Next Tag => $(NEXT_TAG)"
 	git-chglog -o CHANGELOG.md --next-tag $(NEXT_TAG)
 	$(SED) "s/$(CURRENT_TAG)/$(NEXT_TAG)/g" README.md
-	EXAMPLES=$(shell find ./examples -mindepth 1 -maxdepth 1 -type d -exec echo {} \;)
-	if [[ -z $$EXAMPLES ]]; then \
-		$(SED) "s/$(CURRENT_TAG)/$(NEXT_TAG)/g" ./examples/README.md;\
-	else \
-		for EXAMPLE in $$EXAMPLES; do echo "$$EXAMPLE/README.md"; $(SED) "s/$(CURRENT_TAG)/$(NEXT_TAG)/g" $$EXAMPLE/README.md; done;\
-	fi;\
 	git config --local user.name github-actions
 	git config --local user.email "github-actions@github.com" 
 	git commit -am "Lock Version $(NEXT_TAG)"
