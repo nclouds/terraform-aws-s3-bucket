@@ -1,148 +1,30 @@
 # Releasing a new version of the module
 
-After a developer's code is merged into `master` branch, it's time to crate a change-log and release a new version of the module. This is done by the automation using Makefile which has two phony targets to create a changelog and make a release.
+After a developer's code is merged into master branch, it's time to crate a change-log and release a new version of the module. 
 
-```bash
-.PHONY: changelog release
-changelog:
-  git-chglog -o CHANGELOG.md --next-tag `semtag final -s minor -o`
+The process to create a new `Release Tag` and `Changelog` is `semi-automatic`. By `semi-automatic` we mean that the workflow is `automatic` but needs to be triggered manually via `Github` Actions on each module repository.
 
-release:
-  semtag final -s minor
-```
+Below steps provide details on how to create a new release tag and change log for a module
 
-ChangeLog template is stored within `.chglog` directory.
+1. Go to the `Automatc Tag Release` in `Github Actions`.
 
-Please note the following when you want to make a new release:
+    <img src="Images/automatic_tag_release.png" alt="atr" width="400" height="200"/>
 
-- This step is done by an `administrator` of the module . A new version of a module may contain one or more merged PRs.
+2. Click on `Run Workflow`
+    1. Choose `Branch` (Default is `master` and must be kept as it is).
+    2. Choose `Release Type` according to what kind of `tag` you want to bump.
+        By Default, the automation bumps a `patch` version. 
+        If you want to bump a minor or `major` version, you need to choose the relevant `Release Type`
+        - `Minor` Version Upgrade ⇒ e.g  **x.1.y ⇒ x.2.0** **(Default Behaviour**
+        - `Major` Version Upgrade ⇒ e.g  **1.x.y ⇒ 2.0.0**
+        - `Patch` Version Upgrade ⇒ e.g  **x.y.1 ⇒ x.y.2**
+    <img src="Images/run_change_workflow.png" alt="rcw" width="400" height="200"/>
+3. Click on `Run Workflow`
+
+
+**_NOTE:_** 
+- ChangeLog template is stored within `.chglog` directory.
 - Changelog creation is automated and if you have followed Semantic PR correctly, the ChangeLog (`CHANGELOG.md`) automatically.
-- By Default, the automation bumps a `minor` version. If you want to bump a `patch` or `major` version, you need to follow the steps in the end of this section
 
-- Follow the below instructions to generate the change log:
-    - `Minor` Version Upgrade ⇒ e.g  **x.1.y ⇒ x.2.0** **(Default Behaviour)**
-        1. The following command generates the changelog and update `CHANGELOG.md`:
-
-            ```bash
-            make changelog
-            ```
-
-        2. Change any references to the new version in the following files:
-            1. Main `README.md` of the module.
-            2. Any `README.md` files in the examples directory.
-        3. Commit the changes with the following message
-
-            ```bash
-            git commit -am "Lock Version <Version Number>"
-            ```
-
-        4. Make a Release now. This will creates and pushes a new tag for the module
-
-            ```bash
-            make release
-            ```
-
-        5. Go to Remote Repository URL now and publish the Release to make it `Latest Release`
-
-            For Example, to publish a new release for Security Group Module, perform the following:
-
-            1. Go to the URL : [https://github.com/nclouds/terraform-aws-security-group/releases](https://github.com/nclouds/terraform-aws-security-group/releases)
-            2. Click on `Draft a New Release` 
-            3. Enter the details:
-                1. Choose the latest tag you created above.
-                2. Give your release a `Title`
-                3. Write `description` about the Release
-            4. Click on `Publish Release`
-    - `Major` Version Upgrade ⇒ e.g  **1.x.y ⇒ 2.0.0**
-        1. Clone the module on your local machine and switch to `master` branch.
-
-            You can do so by replacing just the `<module_name>` with your module's repo name
-
-            ```bash
-            	MODULE_NAME="<module_name>"
-            	BRANCH_NAME="master"
-            	git clone git@github.com:nclouds/$MODULE_NAME.git
-            	cd $MODULE_NAME && git checkout master
-            	git pull 
-            ```
-
-        2. Update(`CHANGELOG.md`)  by running the following command.
-
-            ```bash
-            git-chglog -o CHANGELOG.md --next-tag `semtag final -s major -o`
-            ```
-
-        3. Change any references to the new version in the following files:
-            1. Main `README.md` of the module.
-            2. Any `README.md` files in the examples directory.
-        4. Commit the changes with the following message
-
-            ```bash
-            git commit -am "Lock Version <Version Number>"
-            ```
-
-        5. Make a Release now. This will creates and pushes a new tag for the module
-
-            ```bash
-            semtag final -s major
-            ```
-
-        6. Go to Remote Repository URL now and publish the Release to make it `Latest Release`
-
-            For Example, to publish a new release for Security Group Module, perform the following:
-
-            1. Go to the URL : [https://github.com/nclouds/terraform-aws-security-group/releases](https://github.com/nclouds/terraform-aws-security-group/releases)
-            2. Click on `Draft a New Release` 
-            3. Enter the details:
-                1. Choose the latest tag you created above.
-                2. Give your release a `Title`
-                3. Write `description` about the Release
-            4. Click on `Publish Release`
-
-    - `Patch` Version Upgrade ⇒ e.g  **x.y.1 ⇒ x.y.2**
-        1. Clone the module on your local machine and switch to `master` branch.
-
-            You can do so by replacing just the `<module_name>` with your module's repo name
-
-            ```bash
-            	MODULE_NAME="<module_name>"
-            	BRANCH_NAME="master"
-            	git clone git@github.com:nclouds/$MODULE_NAME.git
-            	cd $MODULE_NAME && git checkout master
-            	git pull 
-            ```
-
-        2. Update(`CHANGELOG.md`)  by running the following command.
-
-            ```bash
-            git-chglog -o CHANGELOG.md --next-tag `semtag final -s patch -o`
-            ```
-
-        3. Change any references to the new version in the following files:
-            1. Main `README.md` of the module.
-            2. Any `README.md` files in the examples directory.
-        4. Commit the changes with the following message
-
-            ```bash
-            git commit -am "Lock Version <Version Number>"
-            ```
-
-        5. Make a Release now. This will creates and pushes a new tag for the module
-
-            ```bash
-            semtag final -s patch
-            ```
-
-        6. Go to Remote Repository URL now and publish the Release to make it `Latest Release`
-
-            For Example, to publish a new release for Security Group Module, perform the following:
-
-            1. Go to the URL : [https://github.com/nclouds/terraform-aws-security-group/releases](https://github.com/nclouds/terraform-aws-security-group/releases)
-            2. Click on `Draft a New Release` 
-            3. Enter the details:
-                1. Choose the latest tag you created above.
-                2. Give your release a `Title`
-                3. Write `description` about the Release
-            4. Click on `Publish Release`
 
 TODO: document install of `semtag` and `git-chglog` that are needed for admins to release new versions.
