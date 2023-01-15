@@ -14,7 +14,7 @@ Terraform module to provision [`Simple Storage Service Service`](https://aws.ama
 Create a simple S3 bucket with default configurations.
 ```hcl
     module "s3" {
-        source      = "git@github.com:nclouds/terraform-aws-s3-bucket.git?ref=v0.2.5"
+        source      = "github.com/nclouds/terraform-aws-s3-bucket?ref=v0.2.5"
         identifier  = "example"
         tags        = {
             Owner       = "sysops"
@@ -31,7 +31,7 @@ If you want to create S3 bucket with enhanced configuration e.g ACLs , force_des
 
 ```hcl
     module "s3" {
-        source      = "git@github.com:nclouds/terraform-aws-s3-bucket.git?ref=v0.2.5"
+        source      = "github.com/nclouds/terraform-aws-s3-bucket?ref=v0.2.5"
         identifier  = "example"
         tags        = {
             Owner       = "sysops"
@@ -43,7 +43,7 @@ If you want to create S3 bucket with enhanced configuration e.g ACLs , force_des
     }
 
     module "file" {
-        source      = "git@github.com:nclouds/terraform-aws-s3-bucket.git//modules/s3-object?ref=v0.2.5"
+        source      = "github.com/nclouds/terraform-aws-s3-bucket//modules/s3-object?ref=v0.2.5"
         file_source = "utils/file.txt"
         bucket      = module.s3.output.bucket.id
         tags        = {
@@ -79,7 +79,7 @@ Here are some working examples of using this module:
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_common_tags"></a> [common\_tags](#module\_common\_tags) | git@github.com:nclouds/terraform-aws-common-tags.git | v0.1.1 |
+| <a name="module_common_tags"></a> [common\_tags](#module\_common\_tags) | github.com/nclouds/terraform-aws-common-tags | v0.1.1 |
 
 ## Resources
 
