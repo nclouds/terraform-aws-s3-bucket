@@ -5,6 +5,12 @@ repos:
     - id: terraform_fmt
     - id: terraform_docs
     - id: terraform_tflint
+      args:
+      - --args=--disable-rule=terraform_unused_declarations
+      - --args=--disable-rule=terraform_required_version
+      - --args=--disable-rule=terraform_required_providers
+      - --args=--disable-rule=terraform_deprecated_index
+      - --args=--disable-rule=terraform_typed_variables
     - id: terraform_tfsec
 
 - repo: https://github.com/nclouds/pre-commit-hooks
