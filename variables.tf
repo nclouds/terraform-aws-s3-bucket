@@ -9,12 +9,6 @@ variable "force_destroy" {
   type        = bool
 }
 
-variable "acl" {
-  description = "The canned ACL to apply"
-  default     = "private"
-  type        = string
-}
-
 variable "tags" {
   description = "Tags to be applied to the resource"
   default     = {}
