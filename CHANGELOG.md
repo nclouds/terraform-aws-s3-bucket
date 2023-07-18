@@ -8,6 +8,11 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 
 
+<a name="v0.3.1"></a>
+## [v0.3.1] - 2023-07-18
+
+
+
 <a name="v0.3.0"></a>
 ## [v0.3.0] - 2023-07-12
 
@@ -83,7 +88,8 @@ DOCS:
 - adding base documentation
 
 
-[Unreleased]: https://github.com/nclouds/terraform-aws-s3-bucket/compare/v0.3.0...HEAD
+[Unreleased]: https://github.com/nclouds/terraform-aws-s3-bucket/compare/v0.3.1...HEAD
+[v0.3.1]: https://github.com/nclouds/terraform-aws-s3-bucket/compare/v0.3.0...v0.3.1
 [v0.3.0]: https://github.com/nclouds/terraform-aws-s3-bucket/compare/v0.2.6...v0.3.0
 [v0.2.6]: https://github.com/nclouds/terraform-aws-s3-bucket/compare/v0.2.5...v0.2.6
 [v0.2.5]: https://github.com/nclouds/terraform-aws-s3-bucket/compare/v0.2.4...v0.2.5
